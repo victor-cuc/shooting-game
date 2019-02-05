@@ -29,6 +29,8 @@ public class Game {
 
         view = new UserView(world, 500, 500);
 
+        view.addMouseListener(new MouseClickHandler(view));
+
         final JFrame frame = new JFrame("Bad Dead Redemption");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
