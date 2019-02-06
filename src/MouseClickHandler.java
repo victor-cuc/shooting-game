@@ -1,9 +1,11 @@
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MouseClickHandler extends MouseAdapter {
+/*
 
     private static final float RADIUS = 0.5f;
 
@@ -22,4 +24,19 @@ public class MouseClickHandler extends MouseAdapter {
         ball.setPosition(view.viewToWorld(e.getPoint()));
         ball.addImage(ballImage);
     }
+*/
+    //private Vec2 startPosition = new Vec2();
+
+    private WorldView view;
+
+    public MouseClickHandler(WorldView view) {
+        this.view = view;
+    }
+
+    public void mousePressed(MouseEvent e) {
+        Bullet bullet = new Bullet(view.getWorld());
+        bullet.setPosition(view.viewToWorld(e.getPoint()));
+        bullet.applyForce(new Vec2(100, 300));
+    }
+
 }
