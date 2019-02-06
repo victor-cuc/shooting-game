@@ -21,13 +21,14 @@ public class Bullet extends DynamicBody implements CollisionListener {
     }
 
     public void collide(CollisionEvent e) {
-        System.out.println(collisionNo);
+        System.out.println("Bullet collision " + collisionNo);
 
         //number of collisions until disappears
         if (collisionNo < 3) {
             collisionNo++;
         } else {
             this.destroy();
+            System.out.println("Bullet destroyed");
         }
     }
 }
