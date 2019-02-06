@@ -26,6 +26,7 @@ public class Bullet extends DynamicBody implements CollisionListener {
         //number of collisions until disappears
         if (collisionNo < 3) {
             collisionNo++;
+            //this.setAngle();  Set bullet towards direction after bounce
         } else {
             this.destroy();
             System.out.println("Bullet destroyed");

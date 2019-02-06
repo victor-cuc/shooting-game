@@ -14,10 +14,14 @@ public class MouseClickHandler extends MouseAdapter {
 
     public void mousePressed(MouseEvent e) {
         Vec2 startPosition = new Vec2(-7.35f, -7.95f);
+        Vec2 clickPosition = view.viewToWorld(e.getPoint());
+        Vec2 shootingVector = clickPosition.sub(startPosition);
+        float angle = (float) Math.atan(shootingVector.y/shootingVector.x);
 
         Bullet bullet = new Bullet(view.getWorld());
         bullet.setPosition(startPosition);
-        bullet.applyForce(view.viewToWorld(e.getPoint()).sub(startPosition).mul(20));
+        bullet.applyForce(shootingVector.mul(300/shootingVector.length()));
+        bullet.setAngle(angle - (float) Math.PI/2);
 
         System.out.println(view.viewToWorld(e.getPoint()));
     }
