@@ -4,11 +4,11 @@ import org.jbox2d.common.Vec2;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MouseClickHandler extends MouseAdapter {
+public class Shot extends MouseAdapter {
 
     private WorldView view;
 
-    public MouseClickHandler(WorldView view) {
+    public Shot(WorldView view) {
         this.view = view;
     }
 

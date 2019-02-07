@@ -23,13 +23,14 @@ public class Bullet extends DynamicBody implements CollisionListener {
     public void collide(CollisionEvent e) {
         System.out.println("Bullet collision " + collisionNo);
 
-        //number of collisions until disappears
-        if (collisionNo < 3) {
-            collisionNo++;
-            //this.setAngle();  Set bullet towards direction after bounce
-        } else {
-            this.destroy();
-            System.out.println("Bullet destroyed");
+        if (!(e.getOtherBody() instanceof Bullet)) {
+            if (collisionNo < 3 && e.getOtherBody() instanceof StaticBody) {
+                collisionNo++;
+                //this.setAngle();  Set bullet towards direction after bounce
+            } else {
+                this.destroy();
+                System.out.println("Bullet destroyed");
+            }
         }
     }
 }
