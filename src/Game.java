@@ -9,9 +9,6 @@ public class Game {
     public Game() {
         world = new GameWorld();
 
-        // ground
-
-
         view = new UserView(world, 1200, 900);
 
         view.addMouseListener(new Shot(view));

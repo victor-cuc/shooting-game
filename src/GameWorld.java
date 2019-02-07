@@ -2,6 +2,7 @@ import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
 public class GameWorld extends World {
+    private Cowboy cowboy;
     public GameWorld() {
         super();
 
@@ -22,7 +23,11 @@ public class GameWorld extends World {
         bird.setPosition(new Vec2(8, -10));
         */
 
-        Cowboy cowboy = new Cowboy(this);
+        cowboy = new Cowboy(this);
         cowboy.setPosition(new Vec2(-10,-10));
+    }
+
+    public Cowboy getCowboy() {
+        return cowboy;
     }
 }

@@ -2,7 +2,7 @@ import city.cs.engine.*;
 
 public class Cowboy extends DynamicBody {
     // -0.03f,0.476f, 0.324f,-0.126f, 0.106f,-0.472f, -0.168f,-0.474f, -0.262f,-0.136f, -0.306f,0.45f
-    int bullets;
+    private int bullets;
 
     public Cowboy(World w) {
         super(w);
@@ -14,6 +14,10 @@ public class Cowboy extends DynamicBody {
 
         SolidFixture fixture = new SolidFixture(this, cowboyShape);
         this.addImage(new BodyImage("res/yosemite_sam.png", 8));
+    }
+
+    public int getBullets() {
+        return bullets;
     }
 
     public void decrementBullets() {
