@@ -1,8 +1,8 @@
 import city.cs.engine.*;
 
-public class Bullet extends DynamicBody implements CollisionListener {
+public class Bullet extends DynamicBody {
 
-    private int collisionNo = 0;
+    private int collisionNo = 1;
 
     public Bullet(World w) {
         super(w);
@@ -16,21 +16,15 @@ public class Bullet extends DynamicBody implements CollisionListener {
 
         this.setGravityScale(0);
         this.setBullet(true);
-        this.addCollisionListener(this::collide);
+        this.addCollisionListener(new BulletHit(this));
 
     }
 
-    public void collide(CollisionEvent e) {
-        System.out.println("Bullet collision " + collisionNo);
+    public int getCollisionNo() {
+        return collisionNo;
+    }
 
-        if (!(e.getOtherBody() instanceof Bullet)) {
-            if (collisionNo < 3 && e.getOtherBody() instanceof StaticBody) {
-                collisionNo++;
-                //this.setAngle();  Set bullet towards direction after bounce
-            } else {
-                this.destroy();
-                System.out.println("Bullet destroyed");
-            }
-        }
+    public void incCollisionNo() {
+        collisionNo++;
     }
 }

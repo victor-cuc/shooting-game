@@ -17,7 +17,7 @@ public class BulletTracker implements StepListener {
 
     @Override
     public void postStep(StepEvent stepEvent) {
-        System.out.println("lin vel:" +bullet.getLinearVelocity());
+        //System.out.println("lin vel:" +bullet.getLinearVelocity());
         if (bullet.getLinearVelocity().x < 0) {
             angle = (float) (Math.atan(bullet.getLinearVelocity().y/bullet.getLinearVelocity().x) + Math.PI/2);
         } else {

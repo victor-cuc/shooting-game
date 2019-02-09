@@ -17,8 +17,15 @@ public class Shot extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         if (cowboy.getBullets() > 0) {
 
-            Vec2 startPosition = new Vec2(-7.35f, -7.95f);
+            Vec2 startPosition;
             Vec2 clickPosition = view.viewToWorld(e.getPoint());
+
+            // Shoot from left or right
+            if (clickPosition.x < cowboy.getPosition().x) {
+                startPosition = new Vec2((float) (cowboy.getPosition().x - 2.5), cowboy.getPosition().y);
+            } else {
+                startPosition = new Vec2((float) (cowboy.getPosition().x + 2.2), (float) (cowboy.getPosition().y - 0.5));
+            }
             Vec2 shootingVector = clickPosition.sub(startPosition);
             float angle = (float) Math.atan(shootingVector.y / shootingVector.x);
 

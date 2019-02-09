@@ -240,11 +240,11 @@ public class PolygonEditor extends JPanel
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        String fileName = "res/bullet.png";
+        String fileName = "res/taz.gif";
         int firstCoordIndex = 0;
 
         /** MODIFY HEIGHT HERE*/
-        float boxHeight = 1.0f;
+        float boxHeight = 6.0f;
         if (args.length > 0) {
             try {
                 String[] test = args[0].split("[, ]+");

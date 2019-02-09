@@ -6,6 +6,8 @@ public class GameWorld extends World {
     public GameWorld() {
         super();
 
+        Bandit bandit;
+
         Shape shape = new BoxShape(22, 0.5f);
         Body ground = new StaticBody(this, shape);
         ground.setPosition(new Vec2(0, -11.5f));
@@ -25,6 +27,9 @@ public class GameWorld extends World {
 
         cowboy = new Cowboy(this);
         cowboy.setPosition(new Vec2(-10,-10));
+
+        bandit = new Bandit(this);
+        bandit.setPosition(new Vec2(5, -10));
     }
 
     public Cowboy getCowboy() {
