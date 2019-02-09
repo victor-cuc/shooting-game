@@ -2,7 +2,7 @@ import city.cs.engine.*;
 
 public class Bullet extends DynamicBody {
 
-    private int collisionNo = 1;
+    private int collisionNo = 0;
 
     public Bullet(World w) {
         super(w);
@@ -16,7 +16,7 @@ public class Bullet extends DynamicBody {
 
         this.setGravityScale(0);
         this.setBullet(true);
-        this.addCollisionListener(new BulletHit(this));
+        this.addCollisionListener(new BulletHit());
 
     }
 

@@ -1,28 +1,41 @@
-import city.cs.engine.CollisionEvent;
-import city.cs.engine.CollisionListener;
-import city.cs.engine.StaticBody;
+import city.cs.engine.*;
 
 public class BulletHit implements CollisionListener {
-    private final Bullet bullet;
 
-    public BulletHit(Bullet bullet) {
-        this.bullet = bullet;
-    }
+    private Bullet bullet;
 
     @Override
     public void collide(CollisionEvent collisionEvent) {
+        bullet = (Bullet) collisionEvent.getReportingBody();
+        Body otherBody = collisionEvent.getOtherBody();
 
-        if ( ! (collisionEvent.getOtherBody() instanceof Bullet)) {
+        if ( ! (otherBody instanceof Bullet)) {
 
-            if (bullet.getCollisionNo() < 3 && collisionEvent.getOtherBody() instanceof StaticBody) {
-                bullet.incCollisionNo();
-                //this.setAngle();  Set bullet towards direction after bounce
-            } else {
+            bullet.incCollisionNo();
+            System.out.println("Bullet collision " + bullet.getCollisionNo());
+
+            if (otherBody instanceof Enemy) {
+                System.out.println("Bullet hit " + collisionEvent.getOtherBody().toString());
+                bullet.destroy();
+                otherBody.destroy();
+
+            } else if (otherBody instanceof Cowboy) {
+                bullet.destroy();
+
+                if (((Cowboy) otherBody).getLivesLeft() <= 1) {
+                    otherBody.destroy();
+                    System.out.println("You killed yourself");
+                } else {
+                    ((Cowboy) otherBody).decLivesLeft();
+                    System.out.println("Oh no, you hit the cowboy. You've got " + ((Cowboy) otherBody).getLivesLeft() + " lives left");
+                }
+
+            } else if (bullet.getCollisionNo() >= 3) {
                 bullet.destroy();
                 System.out.println("Bullet destroyed on collision no: " + bullet.getCollisionNo());
             }
         }
 
-        System.out.println("Bullet collision " + bullet.getCollisionNo());
+
     }
 }
