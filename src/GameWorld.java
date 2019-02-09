@@ -29,7 +29,7 @@ public class GameWorld extends World {
         cowboy.setPosition(new Vec2(-10,-10));
 
         bandit = new Bandit(this);
-        bandit.setPosition(new Vec2(-5, -10));
+        bandit.setPosition(new Vec2(0, -10));
         bandit.walkAround(5, 20);
     }
 

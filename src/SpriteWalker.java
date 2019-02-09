@@ -25,10 +25,16 @@ public class SpriteWalker implements StepListener {
     public void postStep(StepEvent stepEvent) {
         if (walker.getPosition().x <= startPoint.x) {
             walker.startWalking(speed);
+            if (! walker.getImages().get(0).isFlippedHorizontal()) {
+                walker.getImages().get(0).flipHorizontal();
+            }
         }
 
         else if (walker.getPosition().x >= endPoint.x) {
             walker.startWalking(-speed);
+            if (walker.getImages().get(0).isFlippedHorizontal()) {
+                walker.getImages().get(0).flipHorizontal();
+            }
         }
     }
 }
