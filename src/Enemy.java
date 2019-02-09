@@ -7,4 +7,8 @@ public class Enemy extends Walker {
     public Enemy(World world) {
         super(world);
     }
+
+    public void walkAround(float speed, float distance) {
+        getWorld().addStepListener(new SpriteWalker(this, speed, distance));
+    }
 }

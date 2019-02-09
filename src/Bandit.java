@@ -1,4 +1,5 @@
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
 public class Bandit extends Enemy {
     public Bandit(World world) {
