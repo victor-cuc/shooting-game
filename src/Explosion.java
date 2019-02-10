@@ -1,11 +1,26 @@
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
-public class Explosion implements CollisionListener, StepListener {
+public class Explosion implements CollisionListener, StepListener{
+    private Body reportingBody;
+    private boolean hit;
+    private float explosionTime;
+    public static final float EXPLOSION_LENGTH = 0.7f;
+
+
+    public Explosion() {
+        hit = false;
+        explosionTime = 0;
+    }
 
     @Override
     public void collide(CollisionEvent collisionEvent) {
+        reportingBody = collisionEvent.getReportingBody();
         if (collisionEvent.getOtherBody() instanceof Bullet) {
-            collisionEvent.getReportingBody().addImage(new BodyImage("res/explosion.gif", 6));
+            //reportingBody.addImage(new BodyImage("res/explosion.gif", 6));
+            reportingBody.removeAllImages();
+            new AttachedImage(reportingBody, new BodyImage("res/explosion.gif"), 6, 0, new Vec2(0, 0));
+            hit = true;
         }
     }
 
@@ -16,6 +31,16 @@ public class Explosion implements CollisionListener, StepListener {
 
     @Override
     public void postStep(StepEvent stepEvent) {
+        if (hit) {
+            //System.out.println(stepEvent.getStep());
+            //reportingBody.destroy();
+            explosionTime += stepEvent.getStep();
 
+            if (explosionTime >= EXPLOSION_LENGTH) {
+                reportingBody.destroy();
+//                Cowboy cowboy = ((GameWorld) reportingBody.getWorld()).getCowboy();
+//                cowboy.addBullets(1);;
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ public class Cowboy extends DynamicBody {
     public Cowboy(World w) {
         super(w);
 
-        bullets = 5;
+        bullets = 3;
         livesLeft = 3;
 
         PolygonShape cowboyShape = new PolygonShape(
@@ -33,5 +33,9 @@ public class Cowboy extends DynamicBody {
 
     public void decLivesLeft() {
         livesLeft--;
+    }
+
+    public void addBullets(int i) {
+        bullets += i;
     }
 }

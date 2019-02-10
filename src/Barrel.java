@@ -9,6 +9,14 @@ public class Barrel extends DynamicBody {
 
         SolidFixture fixture = new SolidFixture(this, barrelShape);
         this.addImage(new BodyImage("res/barrel.png", 6));
-        this.addCollisionListener(new Explosion());
+
+        Explosion explosion = new Explosion();
+        this.addCollisionListener(explosion);
+        w.addStepListener(explosion);
+        this.addDestructionListener(destructionEvent -> {
+                ((GameWorld) w).getCowboy().addBullets(3);
+                System.out.println("Extra bullets! Now you have " + ((GameWorld) w).getCowboy().getBullets());
+            });
+
     }
 }
