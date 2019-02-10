@@ -1,12 +1,15 @@
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+import java.util.ArrayList;
+
 public class GameWorld extends World {
     private Cowboy cowboy;
     public GameWorld() {
         super();
 
         Bandit bandit;
+        ArrayList<Barrel> barrels = new ArrayList<>();
 
         Shape shape = new BoxShape(22, 0.5f);
         Body ground = new StaticBody(this, shape);
@@ -30,7 +33,11 @@ public class GameWorld extends World {
 
         bandit = new Bandit(this);
         bandit.setPosition(new Vec2(0, -10));
-        bandit.walkAround(5, 20);
+        bandit.walkAround(3, 20);
+
+        barrels.add(new Barrel(this));
+        barrels.get(0).setPosition(new Vec2(-20, -10));
+
     }
 
     public Cowboy getCowboy() {
