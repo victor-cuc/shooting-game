@@ -27,7 +27,6 @@ public class Shot extends MouseAdapter {
                 startPosition = new Vec2((float) (cowboy.getPosition().x + 2.2), (float) (cowboy.getPosition().y - 0.5));
             }
             Vec2 shootingVector = clickPosition.sub(startPosition);
-            float angle = (float) Math.atan(shootingVector.y / shootingVector.x);
 
             Bullet bullet = new Bullet(view.getWorld());
             bullet.setPosition(startPosition);
