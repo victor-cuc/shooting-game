@@ -11,7 +11,7 @@ public class Shot extends MouseAdapter {
 
     public Shot(WorldView view) {
         this.view = view;
-        cowboy = ((GameWorld) view.getWorld()).getCowboy();
+        cowboy = ((GameLevel) view.getWorld()).getCowboy();
     }
 
     public void mousePressed(MouseEvent e) {

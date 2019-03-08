@@ -14,8 +14,8 @@ public class Barrel extends DynamicBody {
         this.addCollisionListener(explosion);
         w.addStepListener(explosion);
         this.addDestructionListener(destructionEvent -> {
-                ((GameWorld) w).getCowboy().addBullets(3);
-                System.out.println("Extra bullets! Now you have " + ((GameWorld) w).getCowboy().getBullets());
+                ((GameLevel) w).getCowboy().addBullets(3);
+                System.out.println("Extra bullets! Now you have " + ((GameLevel) w).getCowboy().getBullets());
             });
 
     }

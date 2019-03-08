@@ -1,13 +1,19 @@
 import city.cs.engine.*;
 
 public class BulletHit implements CollisionListener {
-
+//
+//    private Game game;
+//
+//    public BulletHit(Game game) {
+//        this.game = game;
+//    }
     private Bullet bullet;
 
     @Override
     public void collide(CollisionEvent collisionEvent) {
         bullet = (Bullet) collisionEvent.getReportingBody();
         Body otherBody = collisionEvent.getOtherBody();
+        GameLevel gameLevel = (GameLevel) collisionEvent.getReportingBody().getWorld();
 
         if ( ! (otherBody instanceof Bullet)) {
 
@@ -19,6 +25,11 @@ public class BulletHit implements CollisionListener {
                 bullet.destroy();
                 if (otherBody instanceof Enemy) {
                     otherBody.destroy();
+                    gameLevel.enemyHit();
+                    if (gameLevel.isCompleted()) {
+                        gameLevel.stop();
+                        System.exit(0);
+                    }
                 }
 
                 else if (otherBody instanceof Cowboy) {
