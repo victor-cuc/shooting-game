@@ -32,14 +32,10 @@ public class Explosion implements CollisionListener, StepListener{
     @Override
     public void postStep(StepEvent stepEvent) {
         if (hit) {
-            //System.out.println(stepEvent.getStep());
-            //reportingBody.destroy();
             explosionTime += stepEvent.getStep();
 
             if (explosionTime >= EXPLOSION_LENGTH) {
                 reportingBody.destroy();
-//                Cowboy cowboy = ((GameWorld) reportingBody.getWorld()).getCowboy();
-//                cowboy.addBullets(1);;
             }
         }
     }
