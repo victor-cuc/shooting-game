@@ -14,7 +14,7 @@ public class Game {
 
         view = new UserView(gameLevel, 1200, 900);
 
-        view.addMouseListener(new Shot(view));
+        view.addMouseListener(new Shot(view, this));
 
         final JFrame frame = new JFrame("Bad Dead Redemption");
 
@@ -35,6 +35,16 @@ public class Game {
 
     public GameLevel currentLevel() {
         return gameLevel;
+    }
+
+    public void levelFailed() {
+        System.out.println("Level failed");
+        System.exit(0);
+    }
+
+    public void nextLevel() {
+        System.out.println("Level passed! NEXT LEVEL");
+        System.exit(0);
     }
 }
 

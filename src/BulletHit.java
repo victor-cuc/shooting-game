@@ -1,19 +1,19 @@
 import city.cs.engine.*;
 
 public class BulletHit implements CollisionListener {
-//
-//    private Game game;
-//
-//    public BulletHit(Game game) {
-//        this.game = game;
-//    }
+
+    private Game game;
+
+    public BulletHit(Game game) {
+        this.game = game;
+    }
     private Bullet bullet;
 
     @Override
     public void collide(CollisionEvent collisionEvent) {
         bullet = (Bullet) collisionEvent.getReportingBody();
         Body otherBody = collisionEvent.getOtherBody();
-        GameLevel gameLevel = (GameLevel) collisionEvent.getReportingBody().getWorld();
+        GameLevel gameLevel = game.currentLevel();
 
         if ( ! (otherBody instanceof Bullet)) {
 
@@ -27,8 +27,7 @@ public class BulletHit implements CollisionListener {
                     otherBody.destroy();
                     gameLevel.enemyHit();
                     if (gameLevel.isCompleted()) {
-                        gameLevel.stop();
-                        System.exit(0);
+                        game.nextLevel();
                     }
                 }
 
@@ -37,6 +36,7 @@ public class BulletHit implements CollisionListener {
                     if (((Cowboy) otherBody).getLivesLeft() <= 1) {
                         otherBody.destroy();
                         System.out.println("You killed yourself");
+                        game.levelFailed();
                     } else {
                         ((Cowboy) otherBody).decLivesLeft();
                         System.out.println("Oh no, you hit the cowboy. You've got " + ((Cowboy) otherBody).getLivesLeft() + " lives left");

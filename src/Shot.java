@@ -6,11 +6,13 @@ import java.awt.event.MouseEvent;
 
 public class Shot extends MouseAdapter {
 
+    private final Game game;
     private WorldView view;
     private Cowboy cowboy;
 
-    public Shot(WorldView view) {
+    public Shot(WorldView view, Game game) {
         this.view = view;
+        this.game = game;
         cowboy = ((GameLevel) view.getWorld()).getCowboy();
     }
 
@@ -28,7 +30,7 @@ public class Shot extends MouseAdapter {
             }
             Vec2 shootingVector = clickPosition.sub(startPosition);
 
-            Bullet bullet = new Bullet(view.getWorld());
+            Bullet bullet = new Bullet(view.getWorld(), game);
             bullet.setPosition(startPosition);
             view.getWorld().addStepListener(new BulletTracker(bullet));
             bullet.applyForce(shootingVector.mul(300 / shootingVector.length()));
@@ -38,6 +40,7 @@ public class Shot extends MouseAdapter {
             cowboy.decrementBullets();
         } else {
             System.out.println("Out of ammo!");
+            game.levelFailed();
         }
     }
 
