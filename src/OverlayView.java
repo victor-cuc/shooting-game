@@ -11,6 +11,6 @@ public class OverlayView extends UserView {
 
     protected void paintForeground(Graphics2D g) {
         String bulletsLeft = Integer.toString(((GameLevel) super.getWorld()).getCowboy().getBullets());
-        g.drawString(bulletsLeft, 10, 20);
+        g.drawString(("Bullets Left: " + bulletsLeft), 10, 20);
     }
 }

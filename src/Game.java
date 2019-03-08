@@ -57,6 +57,9 @@ public class Game {
 
         System.out.println(currentLevel().getCowboy().getBullets());
         gameLevel.stop();
+
+        // For some reason the mouse listener from the first level would remain active
+        // and still count the bullets from Level1's cowboy
         view.removeMouseListener(view.getMouseListeners()[0]);
         levelNo++;
         if (levelNo < levels.length) {
@@ -74,6 +77,23 @@ public class Game {
             System.out.println("Game won");
             System.exit(0);
         }
+    }
+
+    //TODO Add more levels to if statement
+    public void restartLevel() {
+        gameLevel.stop();
+
+        if (gameLevel instanceof Level1) {
+            gameLevel = new Level1();
+        } else if (gameLevel instanceof Level2) {
+            gameLevel = new Level2();
+        }
+        view.removeMouseListener(view.getMouseListeners()[0]);
+
+        gameLevel.populate();
+        view.setWorld(gameLevel);
+        view.addMouseListener(new Shot(view, this));
+        gameLevel.start();
     }
 }
 

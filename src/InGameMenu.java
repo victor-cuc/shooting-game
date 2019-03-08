@@ -15,6 +15,8 @@ public class InGameMenu {
         this.game = game;
 
         quitButton.addActionListener(e -> System.exit(0));
+
+        resetButton.addActionListener(e -> game.restartLevel());
     }
 
     public JPanel getMainPanel() {
