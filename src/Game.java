@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Game {
     private GameLevel gameLevel;
-    private UserView view;
+    private OverlayView view;
     private GameLevel[] levels = new GameLevel[2];
     private int levelNo;
 
@@ -17,7 +17,7 @@ public class Game {
         gameLevel = levels[levelNo];
         gameLevel.populate();
 
-        view = new UserView(gameLevel, 1200, 900);
+        view = new OverlayView(gameLevel, 1200, 900);
 
         view.addMouseListener(new Shot(view, this));
 
