@@ -1,6 +1,7 @@
 import city.cs.engine.*;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Game {
     private GameLevel gameLevel;
@@ -20,15 +21,18 @@ public class Game {
 
         view.addMouseListener(new Shot(view, this));
 
-        final JFrame frame = new JFrame("Bad Dead Redemption");
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationByPlatform(true);
-        frame.add(view);
-        frame.setResizable(false);
+        final JFrame window = new JFrame("Bad Dead Redemption");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setLocationByPlatform(true);
+        window.add(view);
+        window.setResizable(false);
         // size the game window to fit the gameLevel view
-        frame.pack();
-        frame.setVisible(true);
+
+        InGameMenu menu = new InGameMenu(this);
+        window.add(menu.getMainPanel(), BorderLayout.SOUTH);
+
+        window.pack();
+        window.setVisible(true);
 
         gameLevel.start();
     }
