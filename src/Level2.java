@@ -6,7 +6,7 @@ import org.jbox2d.common.Vec2;
 
 import java.util.ArrayList;
 
-public class Level1 extends GameLevel {
+public class Level2 extends GameLevel {
     public static final int NUM_ENEMIES = 1;
     private int enemiesKilled;
 
@@ -16,7 +16,7 @@ public class Level1 extends GameLevel {
 
         enemiesKilled = 0;
 
-        Bandit bandit;
+
         ArrayList<Barrel> barrels = new ArrayList<>();
 
         Shape shape = new BoxShape(22, 0.5f);
@@ -26,14 +26,14 @@ public class Level1 extends GameLevel {
         // platform1
         Shape platform1Shape = new BoxShape(8, 0.5f);
         Body platform1 = new StaticBody(this, platform1Shape);
-        platform1.setPosition(new Vec2(-9, 5.5f));
+        platform1.setPosition(new Vec2(9, 5.5f));
 
-        bandit = new Bandit(this);
+        Bandit bandit = new Bandit(this);
         bandit.setPosition(new Vec2(0, -10));
-        bandit.walkAround(3, 20);
+        bandit.walkAround(6, 8);
 
         barrels.add(new Barrel(this));
-        barrels.get(0).setPosition(new Vec2(-20, -10));
+        barrels.get(0).setPosition(new Vec2(20, -10));
 
     }
 

@@ -4,8 +4,8 @@ import org.jbox2d.common.Vec2;
 public abstract class GameLevel extends World {
     private Cowboy cowboy;
 
-    public void populate(Cowboy cowboy) {
-        this.cowboy = cowboy;
+    public void populate() {
+        cowboy = new Cowboy(this);
         cowboy.setPosition(startPosition());
     }
 

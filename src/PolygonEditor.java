@@ -144,7 +144,7 @@ public class PolygonEditor extends JPanel
             }
 
             public void mouseReleased(MouseEvent e) {
-                String mods = e.getMouseModifiersText(e.getModifiers());
+                String mods = MouseEvent.getMouseModifiersText(e.getModifiers());
                 if (!mods.equals("Button1")) {
                     points.remove(currentVertex);
                 }

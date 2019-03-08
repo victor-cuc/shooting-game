@@ -24,14 +24,9 @@ public class BulletHit implements CollisionListener {
                 System.out.println("Bullet hit " + collisionEvent.getOtherBody().toString());
                 bullet.destroy();
                 if (otherBody instanceof Enemy) {
-                    otherBody.destroy();
                     gameLevel.enemyHit();
-                    if (gameLevel.isCompleted()) {
-                        game.nextLevel();
-                    }
-                }
-
-                else if (otherBody instanceof Cowboy) {
+                    otherBody.destroy();
+                } else if (otherBody instanceof Cowboy) {
 
                     if (((Cowboy) otherBody).getLivesLeft() <= 1) {
                         otherBody.destroy();
@@ -48,8 +43,11 @@ public class BulletHit implements CollisionListener {
                 bullet.destroy();
                 System.out.println("Bullet destroyed on collision no: " + bullet.getCollisionNo());
             }
-        }
 
+            if (gameLevel.isCompleted()) {
+                game.nextLevel();
+            }
+        }
 
     }
 }

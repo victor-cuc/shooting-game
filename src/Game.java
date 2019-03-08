@@ -5,12 +5,16 @@ import javax.swing.*;
 public class Game {
     private GameLevel gameLevel;
     private UserView view;
-    private Cowboy cowboy;
+    private GameLevel[] levels = new GameLevel[2];
+    private int levelNo;
 
     public Game() {
-        gameLevel = new Level1();
-        cowboy = new Cowboy(gameLevel);
-        gameLevel.populate(cowboy);
+        levelNo = 0;
+        levels[0] = new Level1();
+        levels[1] = new Level2();
+
+        gameLevel = levels[levelNo];
+        gameLevel.populate();
 
         view = new UserView(gameLevel, 1200, 900);
 
@@ -39,12 +43,33 @@ public class Game {
 
     public void levelFailed() {
         System.out.println("Level failed");
+        gameLevel.stop();
         System.exit(0);
     }
 
     public void nextLevel() {
-        System.out.println("Level passed! NEXT LEVEL");
-        System.exit(0);
+        int cowboyBulletsLeft = currentLevel().getCowboy().getBullets() + 2;
+        int cowboyLivesLeft = currentLevel().getCowboy().getLivesLeft();
+
+        System.out.println(currentLevel().getCowboy().getBullets());
+        gameLevel.stop();
+        view.removeMouseListener(view.getMouseListeners()[0]);
+        levelNo++;
+        if (levelNo < levels.length) {
+            System.out.println("Level passed! Next level is: LEVEL " + (levelNo+1));
+            gameLevel = levels[levelNo];
+            gameLevel.populate();
+
+            gameLevel.getCowboy().setBullets(cowboyBulletsLeft);
+            gameLevel.getCowboy().setLivesLeft(cowboyLivesLeft);
+
+            view.setWorld(gameLevel);
+            view.addMouseListener(new Shot(view, this));
+            gameLevel.start();
+        } else {
+            System.out.println("Game won");
+            System.exit(0);
+        }
     }
 }
 

@@ -38,9 +38,9 @@ public class Shot extends MouseAdapter {
             System.out.println(view.viewToWorld(e.getPoint()));
 
             cowboy.decrementBullets();
+
         } else {
             System.out.println("Out of ammo!");
-            game.levelFailed();
         }
     }
 

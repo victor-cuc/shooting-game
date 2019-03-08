@@ -38,4 +38,12 @@ public class Cowboy extends DynamicBody {
     public void addBullets(int i) {
         bullets += i;
     }
+
+    public void setBullets(int bullets) {
+        this.bullets = bullets;
+    }
+
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
+    }
 }
