@@ -17,7 +17,7 @@ public class Game {
         gameLevel = levels[levelNo];
         gameLevel.populate();
 
-        view = new OverlayView(gameLevel, 1200, 900);
+        view = new OverlayView(gameLevel, this, 1200, 900);
 
         view.addMouseListener(new Shot(view, this));
 
@@ -94,6 +94,10 @@ public class Game {
         view.setWorld(gameLevel);
         view.addMouseListener(new Shot(view, this));
         gameLevel.start();
+    }
+
+    public int getLevelNo() {
+        return levelNo +1;
     }
 }
 
