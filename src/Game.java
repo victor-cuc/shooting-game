@@ -5,11 +5,15 @@ import java.awt.*;
 
 public class Game {
     private GameLevel gameLevel;
-    private OverlayView view;
+    private UserView view;
     private GameLevel[] levels = new GameLevel[2];
     private int levelNo;
 
     public Game() {
+        playGame();
+    }
+
+    private void playGame() {
         levelNo = 0;
         levels[0] = new Level1();
         levels[1] = new Level2();
@@ -98,6 +102,10 @@ public class Game {
 
     public int getLevelNo() {
         return levelNo +1;
+    }
+
+    public void mainMenu() {
+
     }
 }
 

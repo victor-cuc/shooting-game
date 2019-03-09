@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d764353-bf83-4f4e-820c-3db1f138a017" name="Default Changelist" comment="Reset button functionality">
-      <change afterPath="$PROJECT_DIR$/src/MainMenu.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainMenu.java" afterDir="false" />
+    <list default="true" id="6d764353-bf83-4f4e-820c-3db1f138a017" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MainGame/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MainGame/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InGameMenu.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/InGameMenu.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InGameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InGameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OverlayView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OverlayView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,14 +47,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="9339" />
-          <entry key="txt" value="980" />
+          <entry key="java" value="9395" />
+          <entry key="txt" value="995" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9339" />
-          <entry key="PLAIN_TEXT" value="980" />
+          <entry key="JAVA" value="9395" />
+          <entry key="PLAIN_TEXT" value="995" />
         </counts>
       </usages-collector>
     </session>
@@ -70,10 +64,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <state relative-caret-position="1515">
+              <caret line="107" column="8" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#246#247#0" expanded="true" />
+                <element signature="e#272#273#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -198,12 +194,12 @@
         <option value="$PROJECT_DIR$/src/Level2.java" />
         <option value="$PROJECT_DIR$/src/Cowboy.java" />
         <option value="$PROJECT_DIR$/src/Shot.java" />
-        <option value="$PROJECT_DIR$/src/Game.java" />
         <option value="$PROJECT_DIR$/src/InGameMenu.java" />
         <option value="$PROJECT_DIR$/src/OverlayView.java" />
         <option value="$PROJECT_DIR$/src/InGameMenu.form" />
         <option value="$PROJECT_DIR$/src/MainMenu.form" />
         <option value="$PROJECT_DIR$/src/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/Game.java" />
       </list>
     </option>
   </component>
@@ -265,7 +261,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552129875484" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552130540861" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -338,7 +335,7 @@
       <workItem from="1552038516908" duration="5514000" />
       <workItem from="1552044343530" duration="6299000" />
       <workItem from="1552056351016" duration="4405000" />
-      <workItem from="1552122720849" duration="5702000" />
+      <workItem from="1552122720849" duration="6059000" />
     </task>
     <task id="LOCAL-00001" summary="Did basic demo">
       <created>1549362401172</created>
@@ -466,14 +463,22 @@
       <option name="project" value="LOCAL" />
       <updated>1552072911973</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Overlay working">
+      <created>1552130138918</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1552130138919</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62600000" />
+    <option name="totallyTimeSpent" value="62957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1916972" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -567,7 +572,8 @@
     <MESSAGE value="Added in-game menu at the bottom. Does nothing for now" />
     <MESSAGE value="Bullet Count overlay" />
     <MESSAGE value="Reset button functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reset button functionality" />
+    <MESSAGE value="Overlay working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Overlay working" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/event/MouseListener.java">
@@ -790,10 +796,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        <state relative-caret-position="1515">
+          <caret line="107" column="8" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#246#247#0" expanded="true" />
+            <element signature="e#272#273#0" expanded="true" />
           </folding>
         </state>
       </provider>
