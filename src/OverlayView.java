@@ -18,7 +18,7 @@ public class OverlayView extends UserView {
         this.game = game;
 
         try {
-            backgroundImage = ImageIO.read(new File("res/desert.png"));
+            backgroundImage = ImageIO.read(new File("res/level_1_background.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,6 +75,32 @@ public class OverlayView extends UserView {
             g.drawImage(backgroundImage, 0, 0, 1200, 900, null);
         } catch (NullPointerException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setBackgroundImage(int levelNo) {
+        switch (levelNo) {
+            case 1:
+                try {
+                    backgroundImage = ImageIO.read(new File("res/level_1_background.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 2:
+                try {
+                    backgroundImage = ImageIO.read(new File("res/level_2_background.jpg"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 3:
+                try {
+                    backgroundImage = ImageIO.read(new File("res/level_3_background.jpg"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
 }

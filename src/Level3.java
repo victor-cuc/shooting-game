@@ -24,17 +24,28 @@ public class Level3 extends GameLevel {
         ground.setPosition(new Vec2(0, -11.5f));
 
         // platform1
-        Shape platform1Shape = new BoxShape(8, 0.5f);
+        Shape platform1Shape = new BoxShape(15, 0.5f);
         Body platform1 = new StaticBody(this, platform1Shape);
-        platform1.setPosition(new Vec2(-9, 5.5f));
+        platform1.setPosition(new Vec2(5, 5.5f));
+
+        // platform1
+        Shape platform2Shape = new BoxShape(0.5f, 6);
+        Body platform2 = new StaticBody(this, platform2Shape);
+        platform2.setPosition(new Vec2(-4, -0.5f));
+
+        // platform1
+        Shape platform3Shape = new BoxShape(0.5f, 6);
+        Body platform3 = new StaticBody(this, platform3Shape);
+        platform3.setPosition(new Vec2(4, -5.5f));
+
 
         bandit = new Bandit(this);
-        bandit.setPosition(new Vec2(0, -10));
-        bandit.walkAround(3, 20);
-
-        bandit = new Bandit(this);
-        bandit.setPosition(new Vec2(0, -10));
-        bandit.walkAround(3, 20);
+        bandit.setPosition(new Vec2(10, -10));
+        bandit.walkAround(3, 10);
+//
+//        bandit = new Bandit(this);
+//        bandit.setPosition(new Vec2(0, -10));
+//        bandit.walkAround(3, 20);
 
         barrels.add(new Barrel(this));
         barrels.get(0).setPosition(new Vec2(-20, -10));

@@ -74,6 +74,7 @@ public class Game {
         gameLevel.populate();
 
         view = new OverlayView(gameLevel, this, 1200, 900);
+        ((OverlayView) view).setBackgroundImage(levelToPlay);
 
         view.addMouseListener(new Shot(view, this));
 
@@ -121,6 +122,7 @@ public class Game {
                 gameLevel.getCowboy().setBullets(cowboyBulletsLeft);
                 gameLevel.getCowboy().setLivesLeft(cowboyLivesLeft);
 
+                ((OverlayView) view).setBackgroundImage(levelIndex+1);
                 view.setWorld(gameLevel);
                 view.addMouseListener(new Shot(view, this));
                 gameLevel.start();

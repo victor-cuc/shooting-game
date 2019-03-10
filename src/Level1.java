@@ -28,12 +28,14 @@ public class Level1 extends GameLevel {
         Body platform1 = new StaticBody(this, platform1Shape);
         platform1.setPosition(new Vec2(-9, 5.5f));
 
-        bandit = new Bandit(this);
-        bandit.setPosition(new Vec2(0, -10));
-        bandit.walkAround(3, 20);
+        Shape platform2Shape = new BoxShape(0.5f, 6);
+        Body platform2 = new StaticBody(this, platform2Shape);
+        platform2.setPosition(new Vec2(-1, -5));
 
-        barrels.add(new Barrel(this));
-        barrels.get(0).setPosition(new Vec2(-20, -10));
+
+        bandit = new Bandit(this);
+        bandit.setPosition(new Vec2(4, -10));
+        bandit.walkAround(3, 10);
 
     }
 

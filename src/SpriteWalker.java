@@ -6,14 +6,14 @@ import org.jbox2d.common.Vec2;
 public class SpriteWalker implements StepListener {
     private Walker walker;
     private float speed;
-    private Vec2 startPoint;
-    private Vec2 endPoint;
+    private float startPointX;
+    private float endPointX;
 
     public SpriteWalker(Walker walker, float speed, float distance) {
         this.walker = walker;
         this.speed = speed;
-        this.startPoint = walker.getPosition();
-        endPoint = startPoint.add(new Vec2(startPoint.x + distance, startPoint.y));
+        this.startPointX = walker.getPosition().x;
+        endPointX = startPointX + distance;
     }
 
     @Override
@@ -23,14 +23,14 @@ public class SpriteWalker implements StepListener {
 
     @Override
     public void postStep(StepEvent stepEvent) {
-        if (walker.getPosition().x <= startPoint.x) {
+        if (walker.getPosition().x <= startPointX) {
             walker.startWalking(speed);
             if (! walker.getImages().get(0).isFlippedHorizontal()) {
                 walker.getImages().get(0).flipHorizontal();
             }
         }
 
-        else if (walker.getPosition().x >= endPoint.x) {
+        else if (walker.getPosition().x >= endPointX) {
             walker.startWalking(-speed);
             if (walker.getImages().get(0).isFlippedHorizontal()) {
                 walker.getImages().get(0).flipHorizontal();

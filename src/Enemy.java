@@ -9,6 +9,6 @@ public class Enemy extends Walker {
     }
 
     public void walkAround(float speed, float distance) {
-        getWorld().addStepListener(new SpriteWalker(this, speed, distance));
+        this.getWorld().addStepListener(new SpriteWalker(this, speed, distance));
     }
 }
