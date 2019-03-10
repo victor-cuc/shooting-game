@@ -1,4 +1,5 @@
 import city.cs.engine.*;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +9,20 @@ public class Game {
     private UserView view;
     private GameLevel[] levels = new GameLevel[2];
     private int levelNo;
+    private JFrame gameJFrame;
+    private JFrame mainMenuJFrame;
 
     public Game() {
-        playGame();
+        gameJFrame = new JFrame("Bad Dead Redemption");
+        mainMenuJFrame = new JFrame("Bad Dead Redemption - Main Menu");
+
+        mainMenu();
     }
 
-    private void playGame() {
+    public void playGame() {
+        mainMenuJFrame.setVisible(false);
+        gameJFrame = new JFrame("Bad Dead Redemption");
+
         levelNo = 0;
         levels[0] = new Level1();
         levels[1] = new Level2();
@@ -25,18 +34,19 @@ public class Game {
 
         view.addMouseListener(new Shot(view, this));
 
-        final JFrame window = new JFrame("Bad Dead Redemption");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocationByPlatform(true);
-        window.add(view);
-        window.setResizable(false);
-        // size the game window to fit the gameLevel view
+        gameJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameJFrame.setLocationByPlatform(true);
+        gameJFrame.setResizable(false);
+        gameJFrame.add(view);
 
         InGameMenu menu = new InGameMenu(this);
-        window.add(menu.getMainPanel(), BorderLayout.SOUTH);
+        gameJFrame.add(menu.getMainPanel(), BorderLayout.SOUTH);
 
-        window.pack();
-        window.setVisible(true);
+//        MainMenu mainMenu = new MainMenu(this);
+//        window.add(mainMenu.getMainPanel());
+
+        gameJFrame.pack();
+        gameJFrame.setVisible(true);
 
         gameLevel.start();
     }
@@ -47,12 +57,6 @@ public class Game {
 
     public GameLevel currentLevel() {
         return gameLevel;
-    }
-
-    public void levelFailed() {
-        System.out.println("Level failed");
-        gameLevel.stop();
-        System.exit(0);
     }
 
     public void nextLevel() {
@@ -78,8 +82,7 @@ public class Game {
             view.addMouseListener(new Shot(view, this));
             gameLevel.start();
         } else {
-            System.out.println("Game won");
-            System.exit(0);
+            gameWon();
         }
     }
 
@@ -105,7 +108,38 @@ public class Game {
     }
 
     public void mainMenu() {
+        gameJFrame.setVisible(false);
+        try {
+            gameLevel.stop();
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }
 
+        mainMenuJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainMenuJFrame.setLocationByPlatform(true);
+        mainMenuJFrame.setResizable(false);
+        // size the game window to fit the gameLevel view
+
+        MainMenu mainMenu = new MainMenu(this);
+        mainMenuJFrame.add(mainMenu.getMainPanel());
+
+        mainMenuJFrame.pack();
+        mainMenuJFrame.setVisible(true);
+    }
+
+    public void gameWon() {
+        System.out.println("Game won");
+        mainMenu();
+    }
+
+    public void levelFailed() {
+        System.out.println("Level failed");
+        gameLevel.stop();
+        mainMenu();
+    }
+
+    public void quit() {
+        System.exit(0);
     }
 }
 

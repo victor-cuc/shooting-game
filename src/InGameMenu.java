@@ -1,5 +1,7 @@
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InGameMenu {
     private JButton pauseButton;
@@ -13,9 +15,10 @@ public class InGameMenu {
     public InGameMenu(Game game) {
         this.game = game;
 
-        quitButton.addActionListener(e -> System.exit(0));
+        quitButton.addActionListener(e -> game.quit());
 
         restartButton.addActionListener(e -> game.restartLevel());
+        mainMenuButton.addActionListener(e -> game.mainMenu());
     }
 
     public JPanel getMainPanel() {
