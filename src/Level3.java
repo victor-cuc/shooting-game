@@ -40,7 +40,7 @@ public class Level3 extends GameLevel {
 
 
         bandit = new Bandit(this);
-        bandit.setPosition(new Vec2(10, -10));
+        bandit.setPosition(new Vec2(8, -10));
         bandit.walkAround(3, 10);
 //
 //        bandit = new Bandit(this);
