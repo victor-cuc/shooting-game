@@ -23,12 +23,6 @@ public class Shot extends MouseAdapter {
 
         try {
             shotSound = new SoundClip("res/sounds/gun_fire.wav");
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-            e.printStackTrace();
-            soundsWorking = false;
-        }
-
-        try {
             dryShotSound = new SoundClip("res/sounds/dry_fire.wav");
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();

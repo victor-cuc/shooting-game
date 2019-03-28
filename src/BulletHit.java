@@ -7,9 +7,10 @@ import java.io.IOException;
 public class BulletHit implements CollisionListener {
 
     private Game game;
+    private Bullet bullet;
+
     private SoundClip gruntSound;
     private SoundClip ricochetSound;
-    private Bullet bullet;
 
     public BulletHit(Game game) {
         this.game = game;
@@ -41,6 +42,7 @@ public class BulletHit implements CollisionListener {
                     otherBody.destroy();
 
                 } else if (otherBody instanceof Cowboy) {
+                    gruntSound.play();
 
                     if (((Cowboy) otherBody).getLivesLeft() <= 1) {
                         otherBody.destroy();

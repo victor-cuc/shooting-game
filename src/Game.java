@@ -19,7 +19,6 @@ public class Game {
     private JFrame mainMenuJFrame;
     private SoundClip soundtrack;
     private SoundClip yahooSound;
-    private Timer timer;
 
     public Game() {
         levels = new GameLevel[noOfLevels];
