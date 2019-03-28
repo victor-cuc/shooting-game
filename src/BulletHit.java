@@ -1,13 +1,25 @@
 import city.cs.engine.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 public class BulletHit implements CollisionListener {
 
     private Game game;
+    private SoundClip gruntSound;
+    private SoundClip ricochetSound;
+    private Bullet bullet;
 
     public BulletHit(Game game) {
         this.game = game;
+        try {
+            gruntSound = new SoundClip("res/sounds/male_grunt.wav");
+            ricochetSound = new SoundClip("res/sounds/ricochet.wav");
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
-    private Bullet bullet;
 
     @Override
     public void collide(CollisionEvent collisionEvent) {
@@ -24,8 +36,10 @@ public class BulletHit implements CollisionListener {
                 System.out.println("Bullet hit " + collisionEvent.getOtherBody().toString());
                 bullet.destroy();
                 if (otherBody instanceof Enemy) {
+                    gruntSound.play();
                     gameLevel.enemyHit();
                     otherBody.destroy();
+
                 } else if (otherBody instanceof Cowboy) {
 
                     if (((Cowboy) otherBody).getLivesLeft() <= 1) {
@@ -37,6 +51,9 @@ public class BulletHit implements CollisionListener {
                         System.out.println("Oh no, you hit the cowboy. You've got " + ((Cowboy) otherBody).getLivesLeft() + " lives left");
                     }
                 }
+            } else {
+                ricochetSound.stop();
+                ricochetSound.play();
             }
 
             if (bullet.getCollisionNo() >= 3) {

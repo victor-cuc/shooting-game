@@ -1,7 +1,12 @@
 import city.cs.engine.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Game {
     public final int noOfLevels = 3;
@@ -12,11 +17,21 @@ public class Game {
     private int levelIndex;
     private JFrame gameJFrame;
     private JFrame mainMenuJFrame;
+    private SoundClip soundtrack;
+    private SoundClip yahooSound;
+    private Timer timer;
 
     public Game() {
         levels = new GameLevel[noOfLevels];
         gameJFrame = new JFrame("Bad Dead Redemption");
         mainMenuJFrame = new JFrame("Bad Dead Redemption - Main Menu");
+
+        try {
+            soundtrack = new SoundClip("res/sounds/theme_song.wav");
+            yahooSound = new SoundClip("res/sounds/yahoo.wav");
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
 
         mainMenu();
     }
@@ -49,6 +64,8 @@ public class Game {
         gameJFrame.setVisible(true);
 
         gameLevel.start();
+
+        soundtrack.loop();
     }
 
     //TODO Add more levels to if statement
@@ -90,6 +107,8 @@ public class Game {
         gameJFrame.setVisible(true);
 
         gameLevel.start();
+
+        soundtrack.loop();
     }
 
     public static void main(String[] args) {
@@ -159,6 +178,7 @@ public class Game {
         gameJFrame.setVisible(false);
         try {
             gameLevel.stop();
+            soundtrack.stop();
         } catch (NullPointerException e) {
             System.out.println(e);
         }
@@ -176,8 +196,14 @@ public class Game {
     }
 
     public void gameWon() {
+        yahooSound.play();
         System.out.println("Game won");
         mainMenu();
+
+//        timer = new Timer(1000, e -> mainMenu());
+//        timer.setInitialDelay(1000);
+//        timer.setRepeats(false);
+//        timer.start();
     }
 
     public void levelFailed() {
