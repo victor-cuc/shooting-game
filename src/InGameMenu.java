@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InGameMenu {
-    private JButton pauseButton;
     private JButton restartButton;
     private JButton mainMenuButton;
     private JPanel mainPanel;

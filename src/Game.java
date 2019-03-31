@@ -4,8 +4,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Game {
@@ -19,8 +20,24 @@ public class Game {
     private JFrame mainMenuJFrame;
     private SoundClip soundtrack;
     private SoundClip yahooSound;
+    private String username;
+    private long startTime;
+    private long gameTime;
+    private static final String highScoreFileName = "res/highscore.txt";
+
+    public long getBestTimeSeconds() {
+        return bestTime/1000000000;
+    }
+
+    public String getBestName() {
+        return bestName;
+    }
+
+    private long bestTime;
+    private String bestName;
 
     public Game() {
+        System.out.println(System.nanoTime());
         levels = new GameLevel[noOfLevels];
         gameJFrame = new JFrame("Bad Dead Redemption");
         mainMenuJFrame = new JFrame("Bad Dead Redemption - Main Menu");
@@ -35,7 +52,10 @@ public class Game {
         mainMenu();
     }
 
-    public void playGame() {
+    public void playNewGame() {
+        fetchBestTime();
+        startTime = System.nanoTime();
+
         mainMenuJFrame.setVisible(false);
         gameJFrame = new JFrame("Bad Dead Redemption");
 
@@ -67,7 +87,6 @@ public class Game {
         soundtrack.loop();
     }
 
-    //TODO Add more levels to if statement
     public void playLevel(int levelToPlay) {
         mainMenuJFrame.setVisible(false);
         gameJFrame = new JFrame("Bad Dead Redemption");
@@ -150,7 +169,7 @@ public class Game {
         }
     }
 
-    //TODO Add more levels to if statement
+
     public void restartLevel() {
         gameLevel.stop();
 
@@ -195,14 +214,12 @@ public class Game {
     }
 
     public void gameWon() {
+        gameTime = startTime - System.nanoTime();
+        updateBestTime();
+
         yahooSound.play();
         System.out.println("Game won");
         mainMenu();
-
-//        timer = new Timer(1000, e -> mainMenu());
-//        timer.setInitialDelay(1000);
-//        timer.setRepeats(false);
-//        timer.start();
     }
 
     public void levelFailed() {
@@ -213,6 +230,42 @@ public class Game {
 
     public void quit() {
         System.exit(0);
+    }
+
+    public void setUsername(String text) {
+        username = text;
+    }
+    public String getUsername() {
+        return username;
+    }
+
+
+    public void fetchBestTime() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(highScoreFileName))){
+            System.out.println("Reading " + highScoreFileName + " ...");
+            String line = reader.readLine();
+            // file is assumed to contain one name, score pair per line
+            String[] tokens = line.split(",");
+            String name = tokens[0];
+            long recordTime = Long.parseLong(tokens[1]);
+            System.out.println("Name: " + name + ", Score: " + recordTime);
+
+            bestTime = recordTime;
+            bestName = name;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateBestTime() {
+        long currentGameTime = System.nanoTime() - startTime;
+        if (currentGameTime < bestTime) {
+            try (FileWriter fw = new FileWriter(highScoreFileName)) {
+                fw.write(username + "," + currentGameTime);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 

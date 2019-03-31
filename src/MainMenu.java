@@ -1,17 +1,29 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainMenu {
-    private final Game game;
+    private Game game;
     private JButton playButton;
     private JButton quitButton;
     private JPanel mainPanel;
     private JComboBox chooseLevelDropdown;
     private JButton playSelectedLevelButton;
+    private JTextField nameTextField;
 
     public MainMenu(Game game) {
         this.game = game;
 
-        playButton.addActionListener(e -> game.playGame());
+        playButton.addActionListener(e -> {
+            String username = nameTextField.getText();
+            System.out.println(username.trim());
+            if (username.trim().length() == 0) {
+                username = "NO_NAME";
+            }
+            game.setUsername(username);
+            System.out.println("new gmae started by: " + game.getUsername());
+            game.playNewGame();
+        });
         quitButton.addActionListener(e -> game.quit());
 //        chooseLevelDropdown.addActionListener(new ActionListener() {
 //            @Override
@@ -38,6 +50,7 @@ public class MainMenu {
                     break;
             }
         });
+
     }
 
 

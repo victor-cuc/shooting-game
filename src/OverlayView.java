@@ -42,6 +42,7 @@ public class OverlayView extends UserView {
         String levelNo = Integer.toString(game.getLevelIndex());
 
         g.drawString("Level " + levelNo, 20, 20);
+        g.drawString("Best time: " + game.getBestTimeSeconds() + " seconds - by " + game.getBestName(), 20, 40);
 //        g.drawString(("Bullets Left: " + bulletsLeft), 10, 40);
 
 
@@ -49,7 +50,7 @@ public class OverlayView extends UserView {
             int imageXCoord = 10;
             for (int i = 0; i < bulletsLeft; i++) {
                 try {
-                    g.drawImage(bulletImage, imageXCoord, 30, 30, 30, null, null);
+                    g.drawImage(bulletImage, imageXCoord, 50, 30, 30, null, null);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
@@ -61,7 +62,7 @@ public class OverlayView extends UserView {
         int imageXCoord = 15;
         for (int i = 0; i < game.currentLevel().getCowboy().getLivesLeft(); i++) {
             try {
-                g.drawImage(heartImage, imageXCoord, 70, 25, 25, null, null);
+                g.drawImage(heartImage, imageXCoord, 90, 25, 25, null, null);
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
