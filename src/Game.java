@@ -33,6 +33,10 @@ public class Game {
         return bestName;
     }
 
+    public long getStartTime() {
+        return startTime;
+    }
+
     private long bestTime;
     private String bestName;
 
@@ -70,6 +74,7 @@ public class Game {
         view = new OverlayView(gameLevel, this, 1200, 900);
 
         view.addMouseListener(new Shot(view, this));
+        ((OverlayView) view).showHighScore();
 
         gameJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameJFrame.setLocationByPlatform(true);

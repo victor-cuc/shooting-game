@@ -6,16 +6,19 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class OverlayView extends UserView {
     private Game game;
     private BufferedImage heartImage;
     private BufferedImage bulletImage;
     private BufferedImage backgroundImage;
+    private boolean isShowingHighscore;
 
     public OverlayView(World w, Game game, int width, int height) {
         super(w, width, height);
         this.game = game;
+        isShowingHighscore = false;
 
         try {
             backgroundImage = ImageIO.read(new File("res/level_1_background.png"));
@@ -42,7 +45,10 @@ public class OverlayView extends UserView {
         String levelNo = Integer.toString(game.getLevelIndex());
 
         g.drawString("Level " + levelNo, 20, 20);
-        g.drawString("Best time: " + game.getBestTimeSeconds() + " seconds - by " + game.getBestName(), 20, 40);
+        if (isShowingHighscore) {
+            g.drawString("Best time: " + game.getBestTimeSeconds() + " seconds - by " + game.getBestName(), 20, 120);
+            g.drawString(runStopwatch(), 20, 140);
+        }
 //        g.drawString(("Bullets Left: " + bulletsLeft), 10, 40);
 
 
@@ -50,19 +56,19 @@ public class OverlayView extends UserView {
             int imageXCoord = 10;
             for (int i = 0; i < bulletsLeft; i++) {
                 try {
-                    g.drawImage(bulletImage, imageXCoord, 50, 30, 30, null, null);
+                    g.drawImage(bulletImage, imageXCoord, 30, 30, 30, null, null);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
                 imageXCoord += 30;
             }
         } else {
-            g.drawString("Out of Ammo", 20, 50);
+            g.drawString("Out of Ammo", 20, 30);
         }
         int imageXCoord = 15;
         for (int i = 0; i < game.currentLevel().getCowboy().getLivesLeft(); i++) {
             try {
-                g.drawImage(heartImage, imageXCoord, 90, 25, 25, null, null);
+                g.drawImage(heartImage, imageXCoord, 70, 25, 25, null, null);
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -103,5 +109,20 @@ public class OverlayView extends UserView {
                 }
                 break;
         }
+    }
+
+    public void showHighScore() {
+        isShowingHighscore = true;
+    }
+
+    public String runStopwatch() {
+        long timeElapsed = System.nanoTime() - game.getStartTime();
+        long milliseconds = TimeUnit.MILLISECONDS.convert(timeElapsed, TimeUnit.NANOSECONDS);
+
+        int minutes = (int) milliseconds / 60000;
+        int seconds= (int) (milliseconds % 60000)/1000;
+        int millisecondsDisplayed = (int) milliseconds % 1000 / 10;
+
+        return String.format("%02d : %02d : %02d\n", minutes, seconds, millisecondsDisplayed);
     }
 }
