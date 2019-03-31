@@ -8,6 +8,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Creates the overlay for the game
+ * <p>Adds an overlay to the class displaying the following:</p>
+ * <ul>
+ *     <li>Current level</li>
+ *     <li>Remaining bullets</li>
+ *     <li>Remaining lives (Cowboy)</li>
+ *     <li>If showHighScore() is called:
+ *       <ul>
+ *         <li>Best time</li>
+ *         <li>Time elapsed</li>
+ *         <li>Current username</li>
+ *       </ul>
+ *     </li>
+ * </ul>
+ * */
+
 public class OverlayView extends UserView {
     private Game game;
     private BufferedImage heartImage;
@@ -15,6 +32,19 @@ public class OverlayView extends UserView {
     private BufferedImage backgroundImage;
     private boolean isShowingHighscore;
 
+    /**
+     * Create a new OverlayView
+     *
+     * @param w
+     *          The world of the game
+     * @param game
+     *             current Game
+     * @param width
+     *             width of the UserView
+     *
+     * @param height
+     *              height of UserView
+     * */
     public OverlayView(World w, Game game, int width, int height) {
         super(w, width, height);
         this.game = game;
@@ -46,6 +76,7 @@ public class OverlayView extends UserView {
 
         g.drawString("Level " + levelNo, 20, 20);
         if (isShowingHighscore) {
+            g.drawString("Playing as: " + game.getUsername(), 20, 160);
             g.drawString("Best time: " + game.getBestTimeSeconds() + " seconds - by " + game.getBestName(), 20, 120);
             g.drawString(runStopwatch(), 20, 140);
         }
@@ -111,9 +142,18 @@ public class OverlayView extends UserView {
         }
     }
 
+    /**
+     * Has to be called in order to display username, time elapsed and highscore.
+     *
+     * Should not be called unless playing full game and highscores are being recorded.
+     * */
     public void showHighScore() {
         isShowingHighscore = true;
     }
+
+    /**
+     * @return timeElapsed as a formatted String
+     * */
 
     public String runStopwatch() {
         long timeElapsed = System.nanoTime() - game.getStartTime();

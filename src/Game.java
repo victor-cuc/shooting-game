@@ -22,7 +22,6 @@ public class Game {
     private SoundClip yahooSound;
     private String username;
     private long startTime;
-    private long gameTime;
     private static final String highScoreFileName = "res/highscore.txt";
 
     public long getBestTimeSeconds() {
@@ -219,7 +218,6 @@ public class Game {
     }
 
     public void gameWon() {
-        gameTime = startTime - System.nanoTime();
         updateBestTime();
 
         yahooSound.play();

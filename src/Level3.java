@@ -1,7 +1,4 @@
-import city.cs.engine.Body;
-import city.cs.engine.BoxShape;
-import city.cs.engine.Shape;
-import city.cs.engine.StaticBody;
+import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
 import java.util.ArrayList;
@@ -28,12 +25,12 @@ public class Level3 extends GameLevel {
         Body platform1 = new StaticBody(this, platform1Shape);
         platform1.setPosition(new Vec2(5, 5.5f));
 
-        // platform1
+        // platform2
         Shape platform2Shape = new BoxShape(0.5f, 6);
         Body platform2 = new StaticBody(this, platform2Shape);
         platform2.setPosition(new Vec2(-4, -0.5f));
 
-        // platform1
+        // platform3
         Shape platform3Shape = new BoxShape(0.5f, 6);
         Body platform3 = new StaticBody(this, platform3Shape);
         platform3.setPosition(new Vec2(4, -5.5f));

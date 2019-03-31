@@ -27,7 +27,7 @@
         <properties>
           <background color="-10926049"/>
           <foreground color="-10306816"/>
-          <text value="Play"/>
+          <text value="Play Game"/>
         </properties>
       </component>
       <component id="71b06" class="javax.swing.JButton" binding="quitButton" default-binding="true">

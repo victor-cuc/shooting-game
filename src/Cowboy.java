@@ -1,5 +1,7 @@
 import city.cs.engine.*;
 
+/** This is the main player of the game * */
+
 public class Cowboy extends DynamicBody {
     // -0.03f,0.476f, 0.324f,-0.126f, 0.106f,-0.472f, -0.168f,-0.474f, -0.262f,-0.136f, -0.306f,0.45f
     private int bullets;
@@ -35,10 +37,20 @@ public class Cowboy extends DynamicBody {
         livesLeft--;
     }
 
+    /**
+     * Add more bullets to the cowboy
+     *
+     * @param i Number of bullets to be added
+     * */
     public void addBullets(int i) {
         bullets += i;
     }
 
+    /**
+     * Override number of bullets of the cowboy
+     *
+     * @param bullets Number of bullets to be set
+     * */
     public void setBullets(int bullets) {
         this.bullets = bullets;
     }
