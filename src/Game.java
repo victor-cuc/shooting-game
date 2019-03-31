@@ -23,6 +23,7 @@ public class Game {
     private String username;
     private long startTime;
     private static final String highScoreFileName = "res/highscore.txt";
+    private boolean isSoundtrackPlaying;
 
     public long getBestTimeSeconds() {
         return bestTime/1000000000;
@@ -88,7 +89,7 @@ public class Game {
 
         gameLevel.start();
 
-        soundtrack.loop();
+        playSoundtrack();
     }
 
     public void playLevel(int levelToPlay) {
@@ -130,7 +131,7 @@ public class Game {
 
         gameLevel.start();
 
-        soundtrack.loop();
+        playSoundtrack();
     }
 
     public static void main(String[] args) {
@@ -200,7 +201,7 @@ public class Game {
         gameJFrame.setVisible(false);
         try {
             gameLevel.stop();
-            soundtrack.stop();
+            stopSoundtrack();
         } catch (NullPointerException e) {
             System.out.println(e);
         }
@@ -243,7 +244,7 @@ public class Game {
     }
 
 
-    public void fetchBestTime() {
+    private void fetchBestTime() {
         try (BufferedReader reader = new BufferedReader(new FileReader(highScoreFileName))){
             System.out.println("Reading " + highScoreFileName + " ...");
             String line = reader.readLine();
@@ -260,7 +261,7 @@ public class Game {
         }
     }
 
-    public void updateBestTime() {
+    private void updateBestTime() {
         long currentGameTime = System.nanoTime() - startTime;
         if (currentGameTime < bestTime) {
             try (FileWriter fw = new FileWriter(highScoreFileName)) {
@@ -269,6 +270,24 @@ public class Game {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void toggleSoundtrack() {
+        if (isSoundtrackPlaying) {
+            stopSoundtrack();
+        } else {
+            playSoundtrack();
+        }
+    }
+
+    private void playSoundtrack() {
+        soundtrack.loop();
+        isSoundtrackPlaying = true;
+    }
+
+    private void stopSoundtrack() {
+        soundtrack.stop();
+        isSoundtrackPlaying = false;
     }
 }
 

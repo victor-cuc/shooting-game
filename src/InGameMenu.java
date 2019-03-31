@@ -7,6 +7,7 @@ public class InGameMenu {
     private JButton restartButton;
     private JButton mainMenuButton;
     private JPanel mainPanel;
+    private JButton toggleMusicButton;
 
     private Game game;
 
@@ -15,6 +16,7 @@ public class InGameMenu {
 
         restartButton.addActionListener(e -> game.restartLevel());
         mainMenuButton.addActionListener(e -> game.mainMenu());
+        toggleMusicButton.addActionListener(e -> game.toggleSoundtrack());
     }
 
     public JPanel getMainPanel() {
